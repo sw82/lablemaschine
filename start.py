@@ -47,9 +47,9 @@ running = True
 
 while running:
 
-    os.system("stty -echo")
+    #os.system("stty -echo")
     diary = int(raw_input())
-    os.system("stty echo")
+    #os.system("stty echo")
 
     if (diary <= lengthoftaglines):
         print taglines[diary]
