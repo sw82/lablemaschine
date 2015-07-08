@@ -12,7 +12,6 @@ taglines = [
     's gibt nichts Gutes, ausser man tut es.', 'pups']
 
 lengthoftaglines = len(taglines)
-
 running = True
 
 while running:
@@ -20,7 +19,6 @@ while running:
     os.system("stty -echo")
     diary = int(raw_input())
     os.system("stty echo")
-
 
     if (diary <= lengthoftaglines):
         print taglines[diary]
