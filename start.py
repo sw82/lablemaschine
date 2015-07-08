@@ -21,7 +21,11 @@ taglines = [
 	'Gehe in die Nähe einer Person die dir sehr sympathisch ist und gebe diesen Zettel dann weiter an eine andere Person in eurer Nähe.',
 	'Wenn Du mehr als 50 Euro Bargeld dabei hast, gib jemandem einen Drink aus',
 	'Wenn Du v. a. aus beruflichen Gründen hier sind, frage Dich warum Du hier bist',
-	'Willst Du heute noch jemanden kennen lernen dann halte Dich an der Bar auf!'
+	'Willst Du heute noch jemanden kennen lernen dann halte Dich an der Bar auf!',
+    'Mit wem auf  würdest Du gerne mal zusammen arbeiten? Gib ihm den Zettel.',
+    'Wer in Deiner Nähe hat den größten Dispo?',
+    'Schau Dich um - wen kennst Du nicht? Rede mit ihm!',
+    'Wer um Dich herum, hat ein Problem damit, sich einer Gruppe zuzuordnen? Rede mit ihm!'
     ]
 
 wisewords = [
