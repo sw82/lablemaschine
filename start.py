@@ -8,6 +8,9 @@ from PIL import Image, ImageFont, ImageDraw
 # [ ] Send to printer
 # [ ]
 
+
+imgsize = 512
+
 taglines = [
     'Gib diesn Zettel jemanden, der besonders gut aussieht',
     'Gib dien Zettel jemanden, der aussieht als wuerde er die AfD waehlen.',
@@ -41,7 +44,6 @@ taglines = [
 # use a truetype font
 fontt = ImageFont.truetype("Arizonia.ttf", 15)
 
-
 lengthoftaglines = len(taglines)
 running = True
 
@@ -52,20 +54,21 @@ while running:
     #os.system("stty echo")
 
     if (diary <= lengthoftaglines):
+
+        lenghtofcurrenttagline = len(taglines[diary])
         print taglines[diary]
 
-        img = Image.new( 'RGB', (255,255), "black") # create a new black image
+        img = Image.new( 'RGB', (imgsize,imgsize), "black") # create a new black image
         pixels = img.load() # create the pixel map
 
         for i in range(img.size[0]):    # for every pixel:
             for j in range(img.size[1]):
                 pixels[i,j] = (i, j, 100) # set the colour accordingly
 
-
-        draw = ImageDraw.Draw(img)
         #Add text
-        draw.text((10, 10), "hello", font=fontt)
-        draw.text((10, 25), "world", font=fontt)
+        draw = ImageDraw.Draw(img)
+        #ImageFont.ImageFont.getsize(taglines[diary])
+        draw.text((10, 50), taglines[diary], font=fontt )
 
         img.show()
 
