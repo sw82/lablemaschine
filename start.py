@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 import os, sys
+from PIL import Image
 
 # TODO
-# Umlaute
-# Send to printer
+# [x] Umlaute
+# [ ] Send to printer
+# [ ] 
 
 taglines = [
     'Gib diesn Zettel jemanden, der besonders gut aussieht',
@@ -25,21 +27,15 @@ taglines = [
     'Mit wem auf  würdest Du gerne mal zusammen arbeiten? Gib ihm den Zettel.',
     'Wer in Deiner Nähe hat den größten Dispo?',
     'Schau Dich um - wen kennst Du nicht? Rede mit ihm!',
-    'Wer um Dich herum, hat ein Problem damit, sich einer Gruppe zuzuordnen? Rede mit ihm!'
-    ]
-
-wisewords = [
+    'Wer um Dich herum, hat ein Problem damit, sich einer Gruppe zuzuordnen? Rede mit ihm!',
     'Das Gras wächst nicht schneller, wenn man daran zieht!',
     'Die Menschen stolpern nicht über Berge, sondern über Maulwurfshügel. Begradige einen!',
     'Stille Wasser sind auch nass. Hol Dir eins an der Bar',
-    'Heute schon gespendet?'
-]
-
-advertising =[
+    'Heute schon gespendet?',
     'Paczka 2015',
     'brainslug.me',
     'Feldversuch 2015'
-]
+    ]
 
 lengthoftaglines = len(taglines)
 running = True
@@ -53,6 +49,17 @@ while running:
 
     if (diary <= lengthoftaglines):
         print taglines[diary]
+
+        img = Image.new( 'RGB', (255,255), "black") # create a new black image
+        pixels = img.load() # create the pixel map
+
+        for i in range(img.size[0]):    # for every pixel:
+            for j in range(img.size[1]):
+                pixels[i,j] = (i, j, 100) # set the colour accordingly
+
+        img.show()
+
+
     else:
         print 'Not yet here'
 else:
