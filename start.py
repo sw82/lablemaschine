@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 import os, sys
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 
 # TODO
 # [x] Umlaute
 # [ ] Send to printer
-# [ ] 
+# [ ]
 
 taglines = [
     'Gib diesn Zettel jemanden, der besonders gut aussieht',
@@ -37,9 +37,13 @@ taglines = [
     'Feldversuch 2015'
     ]
 
+# Image stuff
+# use a truetype font
+fontt = ImageFont.truetype("Arizonia.ttf", 15)
+
+
 lengthoftaglines = len(taglines)
 running = True
-
 
 while running:
 
@@ -57,8 +61,13 @@ while running:
             for j in range(img.size[1]):
                 pixels[i,j] = (i, j, 100) # set the colour accordingly
 
-        img.show()
 
+        draw = ImageDraw.Draw(img)
+        #Add text
+        draw.text((10, 10), "hello", font=fontt)
+        draw.text((10, 25), "world", font=fontt)
+
+        img.show()
 
     else:
         print 'Not yet here'
