@@ -8,6 +8,7 @@ from PIL import Image, ImageFont, ImageDraw
 # [ ] Send to printer
 # [ ] Print via Button pressed
 # [ ] get lable printer installed
+# [ ] make skript start after boot
 
 # create folder
 folder = "out"
