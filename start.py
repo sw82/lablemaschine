@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-import os, sys, time, datetime, subprocess
+
+# USB  Button interface code
+# Copyright 2015 Sebastian Winkler
+# http://sbstnwnklr.com
+
+import os, sys, time, datetime, subprocess, usb.core, usb.util, Button
 from PIL import Image, ImageFont, ImageDraw
 
 # TODO
@@ -20,6 +25,9 @@ imgsize = 512
 
 #lpr =  subprocess.Popen("/usr/bin/lpr", stdin=subprocess.PIPE)
 printer_name = "Brother_HL-2150N_series"
+
+# USB Device
+button = Button.Button();
 
 def shellquote(s):
     return "'" + s.replace("'", "'\\''") + "'"
@@ -112,12 +120,13 @@ lengthoftaglines = len(taglines)
 running = True
 
 while running:
+    if button.read():
+        print "Pressed"
+    time.sleep(.5)
 
     #os.system("stty -echo")
     diary = int(raw_input())
     #os.system("stty echo")
-
-
 
     if (diary <= lengthoftaglines):
 
