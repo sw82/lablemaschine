@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-import os, sys
+import os, sys, time, datetime
 from PIL import Image, ImageFont, ImageDraw
 
 # TODO
@@ -9,7 +9,7 @@ from PIL import Image, ImageFont, ImageDraw
 # [ ]
 
 # create folder
-folder = "/tmp/lablemaschine"
+folder = "out"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
@@ -126,8 +126,12 @@ while running:
         #ImageFont.ImageFont.getsize(taglines[diary])
         draw.text((10, 50), taglines[diary], font=fontt )
 
-        #img.save("")
-        #newImg1.save("img1.png","PNG")
+
+        ts = time.time()
+        # 2012-12-15 01:21:05
+        st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        img.save(folder +'/' + st + '.png',"PNG")
+
         #print
         #os.system("lpr -P printer_name file_name.txt")
 
