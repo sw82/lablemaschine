@@ -6,7 +6,8 @@ from PIL import Image, ImageFont, ImageDraw
 # TODO
 # [x] Umlaute
 # [ ] Send to printer
-# [ ]
+# [ ] Print via Button pressed
+# [ ] get lable printer installed
 
 # create folder
 folder = "out"
@@ -15,8 +16,11 @@ if not os.path.exists(folder):
 
 imgsize = 512
 
-lpr =  subprocess.Popen("/usr/bin/lpr", stdin=subprocess.PIPE)
+#lpr =  subprocess.Popen("/usr/bin/lpr", stdin=subprocess.PIPE)
 printer_name = "Brother_HL-2150N_series"
+
+def shellquote(s):
+    return "'" + s.replace("'", "'\\''") + "'"
 
 taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen würdest.',
     'Gib diesen Zettel weiter an jemanden, den du überhaupt nicht einschätzen kannst.',
@@ -139,7 +143,7 @@ while running:
 
         #print
         #lpr.stdin.write(imagefile)
-        os.system("lpr -P " + printer_name + " " + imagefile)
+        os.system("lpr -P " + printer_name + " " + shellquote(imagefile))
 
     else:
         print 'Not yet here'
