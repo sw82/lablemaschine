@@ -98,7 +98,7 @@ taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen wü
 
 # Image stuff
 # use a truetype font
-fontt = ImageFont.truetype("Arizonia.ttf", 15)
+fontt = ImageFont.truetype("assets/Arizonia.ttf", 15)
 
 lengthoftaglines = len(taglines)
 running = True
