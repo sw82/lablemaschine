@@ -5,7 +5,8 @@
 # Copyright 2015 Sebastian Winkler
 # http://sbstnwnklr.com
 
-import os, sys, time, datetime, subprocess, usb, Button #usb.core, usb.util
+import os, sys, time, datetime, subprocess, usb, Button
+#usb.core, usb.util
 from PIL import Image, ImageFont, ImageDraw
 
 # TODO
