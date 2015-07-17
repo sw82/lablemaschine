@@ -8,6 +8,10 @@ from PIL import Image, ImageFont, ImageDraw
 # [ ] Send to printer
 # [ ]
 
+# create folder
+folder = "/tmp/lablemaschine"
+if not os.path.exists(folder):
+    os.makedirs(folder)
 
 imgsize = 512
 
@@ -91,6 +95,7 @@ taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen wü
     'Feldversuch 2015'
     ]
 
+
 # Image stuff
 # use a truetype font
 fontt = ImageFont.truetype("Arizonia.ttf", 15)
@@ -121,7 +126,10 @@ while running:
         #ImageFont.ImageFont.getsize(taglines[diary])
         draw.text((10, 50), taglines[diary], font=fontt )
 
-        img.show()
+        #img.save("")
+        #newImg1.save("img1.png","PNG")
+        #print
+        #os.system("lpr -P printer_name file_name.txt")
 
     else:
         print 'Not yet here'
