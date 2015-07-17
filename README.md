@@ -17,3 +17,8 @@ Linux
 
 Set the default printer
 > lpoptions -d printer
+
+## USB Device
+
+Figure out which is your USB input
+>lsusb
