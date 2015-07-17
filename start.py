@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-import os, sys, time, datetime
+import os, sys, time, datetime, subprocess
 from PIL import Image, ImageFont, ImageDraw
 
 # TODO
@@ -14,6 +14,8 @@ if not os.path.exists(folder):
     os.makedirs(folder)
 
 imgsize = 512
+
+lpr =  subprocess.Popen("/usr/bin/lpr", stdin=subprocess.PIPE)
 
 taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen würdest.',
     'Gib diesen Zettel weiter an jemanden, den du überhaupt nicht einschätzen kannst.',
@@ -95,7 +97,6 @@ taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen wü
     'Feldversuch 2015'
     ]
 
-
 # Image stuff
 # use a truetype font
 fontt = ImageFont.truetype("assets/Arizonia.ttf", 15)
@@ -108,6 +109,8 @@ while running:
     #os.system("stty -echo")
     diary = int(raw_input())
     #os.system("stty echo")
+
+
 
     if (diary <= lengthoftaglines):
 
@@ -130,9 +133,11 @@ while running:
         ts = time.time()
         # 2012-12-15 01:21:05
         st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        img.save(folder +'/' + st + '.png',"PNG")
+        imagefile = folder +'/' + st + '.bmp'
+        img.save(imagefile,"BMP")
 
         #print
+        lpr.stdin.write(imagefile)
         #os.system("lpr -P printer_name file_name.txt")
 
     else:
