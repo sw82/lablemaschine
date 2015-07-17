@@ -5,7 +5,17 @@
 Fun thingy to print via button pressed to a label printer.
 From an array of quotes the user picks an items which will be printed.
 
+# Libraries
+os
+sys
+time
+datetime
+subprocess
+usb.core
+usb.util
+Button (included)
 # Setup
+
 ## Output folder
 All files are stored within this repositories specified output folder. If you change the name, also change .gitignore
 
