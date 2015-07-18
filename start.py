@@ -18,21 +18,36 @@ from PIL import Image, ImageFont, ImageDraw
 # [ ] make skript start after boot
 # [ ] taglines moved to file
 
-# create folder
-folder = "out"
+imgsize         = 512
+printer_name    = "Brother_HL-2150N_series"
+fontt           = ImageFont.truetype("assets/Arizonia.ttf", 15)
+button          = Button.Button(); # USB Device
+folder          = "out"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
-imgsize = 512
-
-#lpr =  subprocess.Popen("/usr/bin/lpr", stdin=subprocess.PIPE)
-printer_name = "Brother_HL-2150N_series"
-
-# USB Device
-button = Button.Button();
-
 def shellquote(s):
     return "'" + s.replace("'", "'\\''") + "'"
+
+def image(diary):
+    img = Image.new( 'RGB', (imgsize,imgsize), "black") # create a new black image
+    pixels = img.load() # create the pixel map
+
+    for i in range(img.size[0]):    # for every pixel:
+        for j in range(img.size[1]):
+            pixels[i,j] = (i, j, 100) # set the colour accordingly
+
+    #Add text
+    draw = ImageDraw.Draw(img)
+    #ImageFont.ImageFont.getsize(taglines[diary])
+    draw.text((10, 50), taglines[diary], font=fontt )
+
+    ts = time.time()
+    # 2012-12-15 01:21:05
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    imagefile = folder +'/' + st + '.bmp'
+    img.save(imagefile,"BMP")
+    return imagefile
 
 taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen würdest.',
     'Gib diesen Zettel weiter an jemanden, den du überhaupt nicht einschätzen kannst.',
@@ -114,10 +129,6 @@ taglines = ['Gib diesen Zettel weiter an eine Person, der du 200 Euro leihen wü
     'Feldversuch 2015'
     ]
 
-# Image stuff
-# use a truetype font
-fontt = ImageFont.truetype("assets/Arizonia.ttf", 15)
-
 lengthoftaglines = len(taglines)
 running = True
 
@@ -126,41 +137,19 @@ while running:
         print "Pressed"
     time.sleep(.5)
 
-    #os.system("stty -echo")
     #TODO input from button pressed
     #diary = int(raw_input())
-    #os.system("stty echo")
 
-    if (diary <= lengthoftaglines):
-
-        lenghtofcurrenttagline = len(taglines[diary])
-        print taglines[diary]
-
-        img = Image.new( 'RGB', (imgsize,imgsize), "black") # create a new black image
-        pixels = img.load() # create the pixel map
-
-        for i in range(img.size[0]):    # for every pixel:
-            for j in range(img.size[1]):
-                pixels[i,j] = (i, j, 100) # set the colour accordingly
-
-        #Add text
-        draw = ImageDraw.Draw(img)
-        #ImageFont.ImageFont.getsize(taglines[diary])
-        draw.text((10, 50), taglines[diary], font=fontt )
-
-
-        ts = time.time()
-        # 2012-12-15 01:21:05
-        st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        imagefile = folder +'/' + st + '.bmp'
-        img.save(imagefile,"BMP")
-
-        #print
-        #lpr.stdin.write(imagefile)
-        os.system("lpr -P " + printer_name + " " + shellquote(imagefile))
-
-    else:
-        print 'Not yet here'
+    # if (diary <= lengthoftaglines):
+    #
+    #     lenghtofcurrenttagline = len(taglines[diary])
+    #     print taglines[diary]
+    #
+    #     imagefile = image(diary)
+    #     os.system("lpr -P " + printer_name + " " + shellquote(imagefile))
+    #
+    # else:
+    #     print 'Not yet here'
 else:
     print 'The while loop is over.'
 print 'Done'
