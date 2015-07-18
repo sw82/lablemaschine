@@ -25,9 +25,9 @@ class Button:
 
   def read(self):
     # Read the USB port. Return 1 if pressed and released, 0 otherwise.
-
     #Magic numbers are from http://search.cpan.org/~bkendi/Device-USB-PanicButton-0.04/lib/Device/USB/PanicButton.pm
-    return self.dev.ctrl_transfer(bmRequestType=0xA1, bRequest=1, wValue=0x300, data_or_wLength=8, timeout=500)[0]
+    #return self.dev.ctrl_transfer(bmRequestType=0xA1, bRequest=1, wValue=0x300, data_or_wLength=8, timeout=500)[0]
+    return 1
 
 if __name__ == "__main__":
   import time
