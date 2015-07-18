@@ -11,11 +11,12 @@ from PIL import Image, ImageFont, ImageDraw
 
 # TODO
 # [x] Umlaute
-# [ ] Send to printer
+# [x] Send to printer
 # [ ] Print via Button pressed
 # [ ] get lable printer installed
 # [ ] create nice putput image
 # [ ] make skript start after boot
+# [ ] taglines moved to file
 
 # create folder
 folder = "out"
@@ -126,7 +127,8 @@ while running:
     time.sleep(.5)
 
     #os.system("stty -echo")
-    diary = int(raw_input())
+    #TODO input from button pressed
+    #diary = int(raw_input())
     #os.system("stty echo")
 
     if (diary <= lengthoftaglines):
